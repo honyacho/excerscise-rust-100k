@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 fn a00() {
     let s = "stressed";
     let reversed = s.chars().rev().collect::<String>();
@@ -29,20 +31,14 @@ fn a03() {
 }
 
 fn a04() {
-    let st: Vec<String> = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can."
-        .split_whitespace().map(|s| s.replace(|c| c == '.' || c == ',', "")).collect();
+    let cs: HashSet<usize> = vec![1, 5, 6, 7, 8, 9, 15, 16, 19].into_iter().collect();
 
-    let cs = vec![1, 5, 6, 7, 8, 9, 15, 16, 19];
-    let mut res = vec![];
-    for i in 0..st.len() {
-        let output = &st[i];
-        if cs.contains(&i) {
-            res.push(&output[..1]);
-        } else {
-            res.push(&output[..2]);
-        }
-    }
-    println!("{}", res.join(" "));
+    let res = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can."
+        .split_whitespace().map(|s| s.replace(|c| c == '.' || c == ',', ""))
+        .enumerate()
+        .map(|(i, v)| String::from(if cs.contains(&(i+1)) { &v[..1] } else { &v[..2] }))
+        .fold(String::from(""), |a, st| a + " " + &st);
+    println!("{}", &res[1..]);
 }
 
 fn main() {
