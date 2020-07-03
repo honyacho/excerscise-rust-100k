@@ -50,7 +50,6 @@ fn a05a(s: String, n: usize) -> Vec<String> {
     return v;
 }
 
-
 fn a05b(s: &str, n: usize) -> Vec<Vec<&str>> {
     let v: Vec<&str> = s.split_whitespace().collect();
     let mut res = vec![];
@@ -79,6 +78,21 @@ fn a06() {
     println!("{:?}", diff);
 }
 
+fn a07() {
+    let x = 12;
+    let y = "気温";
+    let z = 22.4;
+    println!("{}時の{}は{}", x, y, z);
+}
+
+fn a08(instr: &str) {
+    let res: String = String::from(instr).chars().map(|s|
+        if s.is_ascii_lowercase() { (219 - (s as u8)) as char }
+        else { s }
+    ).collect();
+    println!("{}", res);
+}
+
 fn main() {
     a00();
     a01();
@@ -92,4 +106,6 @@ fn main() {
     println!("{:?}", a05b("I am an NLPer", 3));
     println!("{:?}", a05b("I am an NLPer", 4));
     a06();
+    a07();
+    a08("abcABC114514ほげ");
 }
