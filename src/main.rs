@@ -1,4 +1,5 @@
 use std::collections::HashSet;
+use rand::seq::SliceRandom;
 
 fn a00() {
     let s = "stressed";
@@ -93,6 +94,30 @@ fn a08(instr: &str) {
     println!("{}", res);
 }
 
+fn a09(instr: &str) {
+    let words = instr.split_whitespace();
+    let mut rng = rand::thread_rng();
+    let mut mp = words.map(|w| {
+        let mut scrubbled = String::from("");
+        let mut char_arr: Vec<char> = w.chars().collect();
+        let w_size = char_arr.len();
+        if w_size > 4 {
+            scrubbled.push(char_arr[0]);
+            let sl = &mut char_arr[1..(w_size-1)];
+            sl.shuffle(&mut rng);
+            scrubbled.push(char_arr[w_size-1]);
+        }
+        return char_arr.iter().collect::<String>();
+    });
+    let mut res = String::from("");
+    res.push_str(&mp.next().unwrap());
+    for wd in mp {
+        res.push(' ');
+        res.push_str(&wd);
+    }
+    println!("{}", res);
+}
+
 fn main() {
     a00();
     a01();
@@ -108,4 +133,5 @@ fn main() {
     a06();
     a07();
     a08("abcABC114514ほげ");
+    a09("I couldn’t believe that I could actually understand what I was reading : the phenomenal power of the human mind .")
 }
