@@ -1,6 +1,8 @@
 use std::collections::HashSet;
 use rand::seq::SliceRandom;
 
+pub mod a12;
+
 fn a00() {
     let s = "stressed";
     let reversed = s.chars().rev().collect::<String>();
@@ -118,7 +120,30 @@ fn a09(instr: &str) {
     println!("{}", res);
 }
 
+fn a10(input: &str) -> i32 {
+    let mut res = 0;
+    for c in input.chars() {
+        if c == '\n' {
+            res += 1;
+        }
+    }
+    return res;
+}
+
+fn a11(input: &str) -> String {
+    let mut res = String::from("");
+    for c in input.chars() {
+        if c == '\t' {
+            res.push(' ');
+        } else {
+            res.push(c);
+        }
+    }
+    return res;
+}
+
 fn main() {
+
     a00();
     a01();
     a02();
@@ -133,5 +158,8 @@ fn main() {
     a06();
     a07();
     a08("abcABC114514ほげ");
-    a09("I couldn’t believe that I could actually understand what I was reading : the phenomenal power of the human mind .")
+    a09("I couldn’t believe that I could actually understand what I was reading : the phenomenal power of the human mind .");
+    println!("{:?}", a10("dafdsaf\nfsafdsafda\nfsadfdsafda\n"));
+    println!("{}", a11("\t\tdafdsaf\n\tfsafdsafda\n\t\t\t\tfsadfdsafda\n"));
+    a12::a12();
 }
