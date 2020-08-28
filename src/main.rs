@@ -1,7 +1,10 @@
 use std::collections::HashSet;
 use rand::seq::SliceRandom;
+use std::io::{self, Read};
 
 pub mod a12;
+pub mod a13;
+pub mod a14;
 
 fn a00() {
     let s = "stressed";
@@ -143,23 +146,35 @@ fn a11(input: &str) -> String {
 }
 
 fn main() {
-
-    a00();
-    a01();
-    a02();
-    a03();
-    a04();
-    println!("{:?}", a05a(String::from("I am an NLPer"), 2));
-    println!("{:?}", a05a(String::from("I am an NLPer"), 3));
-    println!("{:?}", a05a(String::from("I am an NLPer"), 4));
-    println!("{:?}", a05b("I am an NLPer", 2));
-    println!("{:?}", a05b("I am an NLPer", 3));
-    println!("{:?}", a05b("I am an NLPer", 4));
-    a06();
-    a07();
-    a08("abcABC114514ほげ");
-    a09("I couldn’t believe that I could actually understand what I was reading : the phenomenal power of the human mind .");
-    println!("{:?}", a10("dafdsaf\nfsafdsafda\nfsadfdsafda\n"));
-    println!("{}", a11("\t\tdafdsaf\n\tfsafdsafda\n\t\t\t\tfsadfdsafda\n"));
-    a12::a12();
+    let src = io::stdin();
+    let mut input = String::from("");
+    let res = src.read_line(&mut input);
+    if res.is_err() {
+        println!("input error");
+        return;
+    }
+    match input.trim() {
+        "12" => a12::a12().unwrap(),
+        "13" => a13::a13().unwrap(),
+        "14" => a14::a14().unwrap(),
+        _ => {
+            a00();
+            a01();
+            a02();
+            a03();
+            a04();
+            println!("{:?}", a05a(String::from("I am an NLPer"), 2));
+            println!("{:?}", a05a(String::from("I am an NLPer"), 3));
+            println!("{:?}", a05a(String::from("I am an NLPer"), 4));
+            println!("{:?}", a05b("I am an NLPer", 2));
+            println!("{:?}", a05b("I am an NLPer", 3));
+            println!("{:?}", a05b("I am an NLPer", 4));
+            a06();
+            a07();
+            a08("abcABC114514ほげ");
+            a09("I couldn’t believe that I could actually understand what I was reading : the phenomenal power of the human mind .");
+            println!("{:?}", a10("dafdsaf\nfsafdsafda\nfsadfdsafda\n"));
+            println!("{}", a11("\t\tdafdsaf\n\tfsafdsafda\n\t\t\t\tfsadfdsafda\n"));
+        }
+    }
 }
