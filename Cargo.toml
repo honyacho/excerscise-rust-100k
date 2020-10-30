@@ -9,3 +9,5 @@ edition = "2018"
 [dependencies]
 regex = "1"
 rand = "0.7"
+finalfusion = "0.12"
+flate2 = "1.0"

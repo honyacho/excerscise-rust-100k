@@ -1,10 +1,11 @@
 use std::collections::HashSet;
 use rand::seq::SliceRandom;
-use std::io::{self, Read};
+use std::io;
 
 pub mod a12;
 pub mod a13;
 pub mod a14;
+pub mod a67;
 
 fn a00() {
     let s = "stressed";
@@ -157,6 +158,7 @@ fn main() {
         "12" => a12::a12().unwrap(),
         "13" => a13::a13().unwrap(),
         "14" => a14::a14().unwrap(),
+        "67" => a67::a67().unwrap(),
         _ => {
             a00();
             a01();
