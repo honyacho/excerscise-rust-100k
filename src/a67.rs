@@ -26,13 +26,6 @@ fn calculate_center(invec: &Vec<Vec<f32>>, vec_size: usize, current_group: &[usi
     return res;
 }
 
-// fn debug(value: &Vec<Vec<f32>>) {
-//     for v in value {
-//         v.iter().for_each(|value| print!("{:.2} ", value));
-//         print!("\n");
-//     }
-// }
-
 fn dist(a: &[f32], b: &[f32]) -> f32 {
     let mut res = 0.0;
     a.iter().zip(b).for_each(|(a,b)| res += (a-b)*(a-b));
@@ -83,7 +76,6 @@ pub fn a67() -> std::io::Result<()> {
     }
 
     let mut weighted_center = calculate_center(&vecs, vecs[0].len(), &result, k);
-    // debug(&weighted_center);
 
     let mut tries = 0;
     loop {
